@@ -1,0 +1,135 @@
+#cloud-config
+autoinstall:
+  version: 1
+  interactive-sections: # Install groups listed here will wait for user input
+    - identity
+#    - storage
+#    - network
+  storage: # This should set the interactive (direct) default
+    layout:
+      name: direct
+      match:
+	size: largest
+  locale: en_US.UTF-8
+  keyboard:
+    layout: us
+  identity:
+    hostname: Enter hostname
+    password: $1$ZlIvc0ru$TTTzHR9Fs24OXVo.gT6Nn1
+    username: Enter username
+  ssh:
+    allow-pw: true
+    install-server: true
+  apt:
+    primary:
+      - arches: [default]
+        uri: http://us.archive.ubuntu.com/ubuntu/
+  #   sources:     # Example for adding a ppa source
+  #     ignored1:  # This is here to get the yaml formatting right when adding a ppa
+  #       source: ppa:graphics-drivers/ppa
+    sources:
+      uio-cfengine:
+        source: "deb http://deb.uio.no/debian focal main"
+        key: |
+          -----BEGIN PGP PUBLIC KEY BLOCK-----
+
+          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
+          EVlY/v30Tpo=
+          =28S7
+          -----END PGP PUBLIC KEY BLOCK-----
+  packages:
+#    - uio-cfengine ####to be added later on when deb pkg for U-22-04 is ready
+    - build-essential
+    - network-manager
+    - dkms
+    - emacs-nox
+    - ubuntu-desktop-minimal^
+  package_update: true
+  package_upgrade: true
+  kernel:
+    flavor: hwe
+
+  late-commands:
+    # Changing from networkd to NetworkManager
+    # move existing config out of the way
+    - find /target/etc/netplan/ -name "*.yaml" -exec sh -c 'mv "$1" "$1-orig"' _ {} \;
+    # Create a new netplan and enable it
+    - |
+      cat <<EOF | sudo tee /target/etc/netplan/01-netcfg.yaml
+      network:
+        version: 2
+
+        renderer: NetworkManager
+        ethernets:
+          all-en-interfaces:
+            match:
+              name: en*
+            dhcp4: true
+            optional: true
+
+      EOF
+    - curtin in-target --target /target netplan generate
+    - curtin in-target --target /target netplan apply
+    - curtin in-target --target /target systemctl enable NetworkManager.service
+
+# Remove other packages present by default in Ubuntu Server but not
+    # normally present in Ubuntu Desktop.
+    - >-
+      curtin in-target -- apt-get remove -y
+      ubuntu-server ubuntu-server-minimal
+      binutils byobu curl dmeventd finalrd gawk
+      kpartx mdadm ncurses-term needrestart open-iscsi openssh-server
+      sg3-utils ssh-import-id sssd thin-provisioning-tools vim tmux
+      sosreport screen open-vm-tools motd-news-config lxd-agent-loader
+      landscape-common htop git fonts-ubuntu-console ethtool
+
+    # Keep cloud-init, as it performs some of the installation on first boot.
+    - curtin in-target -- apt-get install -y cloud-init
+
+    # Finally, remove things only installed as dependencies of other things
+    # we have already removed.
+    - curtin in-target -- apt-get autoremove -y
+
+
+#  user-data:
+#    runcmd:
+#      - 'echo "alla ALL=(ALL) NOPASSWD:ALL" > /target/etc/sudoers.d/alla-nopw'
+#      - chmod 440 /target/etc/sudoers.d/alla-nopw
+#      - curtin in-target --target /target -- apt-get install -y ubuntu-desktop plymouth-theme-ubuntu-logo grub-gfxpayload-lists
+#      - curtin in-target --target /target -- sed -i 's/XKBLAYOUT=\"\w*"/XKBLAYOUT=\"'no'\"/g' /etc/default/keyboard
